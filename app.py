@@ -48,7 +48,6 @@ def predict_class(sentence):
     res = model.predict(np.array([p]))[0]
     ERROR_THRESHOLD = 0.25
     results = [[i, r] for i, r in enumerate(res) if r > ERROR_THRESHOLD]
-
     results.sort(key=lambda x: x[1], reverse=True)
     return_list = []
     for r in results:
@@ -72,13 +71,13 @@ def index():
 
 # Define route for chatbot API
 @app.route("/get", methods=["GET", "POST"])
-@app.route("/get", methods=["GET", "POST"])
 def chatbot_response():
     if request.method == "POST":
         msg = request.form.get("msg")
     else:
         msg = request.args.get("msg")
 
+    #msg = request.values.get("msg")
     if not msg:
         return "No message received."
 
