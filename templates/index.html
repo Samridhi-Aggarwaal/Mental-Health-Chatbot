@@ -2,68 +2,133 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title> Psychiatrist Bot</title>
-  <link rel="shortcut icon" href="static/img/mhcicon.png" type="image/x-icon">
-  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>EmpathyBot</title>
+  <link rel="shortcut icon" href="static/img/mhcicon.png" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      color: #fff;
+      margin: 0;
+      padding: 0;
+    }
+    .chat-container {
+      max-width: 600px;
+      margin: 5vh auto;
+      background: #fff;
+      color: #333;
+      border-radius: 20px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .chat-header {
+      background-color: #2575fc;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      font-size: 1.5em;
+    }
+    .chat-body {
+      flex: 1;
+      padding: 20px;
+      overflow-y: auto;
+      height: 400px;
+    }
+    .msg {
+      margin-bottom: 15px;
+      display: flex;
+      align-items: flex-start;
+    }
+    .msg.user {
+      flex-direction: row-reverse;
+    }
+    .msg-bubble {
+      max-width: 70%;
+      padding: 10px 15px;
+      border-radius: 15px;
+      background: #f1f1f1;
+      color: #000;
+    }
+    .msg.user .msg-bubble {
+      background: #d1eaff;
+    }
+    .chat-footer {
+      display: flex;
+      border-top: 1px solid #ccc;
+      background-color: #f9f9f9;
+    }
+    .msger-input {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      border-radius: 5px 0 0 5px;
+      font-size: 16px;
+    }
+    .msger-send-btn {
+      background-color: #2575fc;
+      padding: 10px 20px;
+      background: #1e90ff;
+      color: white;
+      border: none;
+      border-radius: 0 5px 5px 0;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .msger-send-btn:hover {
+      background-color: #1a5edb;
+    }
+    .msger-chat {
+      padding: 10px;
+      overflow-y: auto;
+      flex-grow: 1;
+}
+    body, .msger, .msg, .msger-input, .msger-inputarea, .msg-text, .msg-info-name, .msg-info-time {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-size: 16px;
+    }
+  </style>
 </head>
 <body>
-
-<div class="title">
-  <svg viewBox="0 0 640 512" title="robot">
-        <path fill="currentColor" d="M32,224H64V416H32A31.96166,31.96166,0,0,1,0,384V256A31.96166,31.96166,0,0,1,32,224Zm512-48V448a64.06328,64.06328,0,0,1-64,64H160a64.06328,64.06328,0,0,1-64-64V176a79.974,79.974,0,0,1,80-80H288V32a32,32,0,0,1,64,0V96H464A79.974,79.974,0,0,1,544,176ZM264,256a40,40,0,1,0-40,40A39.997,39.997,0,0,0,264,256Zm-8,128H192v32h64Zm96,0H288v32h64ZM456,256a40,40,0,1,0-40,40A39.997,39.997,0,0,0,456,256Zm-8,128H384v32h64ZM640,256V384a31.96166,31.96166,0,0,1-32,32H576V224h32A31.96166,31.96166,0,0,1,640,256Z" />
-      </svg>
-  <h3>Chatbot</h3>
- <div>
-<div id="chatbot" class="main-card collapsed">
-  <button id="chatbot_toggle">
-    <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24" fill="currentColor"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M15 4v7H5.17l-.59.59-.58.58V4h11m1-2H3c-.55 0-1 .45-1 1v14l4-4h10c.55 0 1-.45 1-1V3c0-.55-.45-1-1-1zm5 4h-2v9H6v2c0 .55.45 1 1 1h11l4 4V7c0-.55-.45-1-1-1z"/></svg>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style="display:none"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
-</svg>
-  </button>
-  <div class="main-title">
-    <div>
-      <svg viewBox="0 0 640 512" title="robot">
-        <path fill="currentColor" d="M32,224H64V416H32A31.96166,31.96166,0,0,1,0,384V256A31.96166,31.96166,0,0,1,32,224Zm512-48V448a64.06328,64.06328,0,0,1-64,64H160a64.06328,64.06328,0,0,1-64-64V176a79.974,79.974,0,0,1,80-80H288V32a32,32,0,0,1,64,0V96H464A79.974,79.974,0,0,1,544,176ZM264,256a40,40,0,1,0-40,40A39.997,39.997,0,0,0,264,256Zm-8,128H192v32h64Zm96,0H288v32h64ZM456,256a40,40,0,1,0-40,40A39.997,39.997,0,0,0,456,256Zm-8,128H384v32h64ZM640,256V384a31.96166,31.96166,0,0,1-32,32H576V224h32A31.96166,31.96166,0,0,1,640,256Z" />
-      </svg>
+  <div class="chat-container">
+    <div class="chat-header">
+      <i class="fas fa-user-md"></i> EmpathyBot
     </div>
-    <span>
-      <i class="fas fa-bug"></i> Psychiatrist Bot <i class="fas fa-bug"></i>
-
-    </span>
-
-  </div>
-  <!-- partial:index.partial.html -->
-
-  <main class="msger-chat">
-    <div class="msg left-msg">
-      <div class="msg-img" style="background-image: url(https://image.flaticon.com/icons/svg/327/327779.svg)"></div>
-
+    <div class="chat-body" id="chat">
+      <div class="msg bot">
         <div class="msg-bubble">
-          <div class="msg-info">
-            <div class="msg-info-name"> Psychiatrist Bot</div>
-          
-            <div class="msg-info-time"><time id="clock"></time></div>
-
-
-
-
-          </div>
-          <div class="msg-text">
-            Welcome to Psychiatrist, a safe and supportive space where you can share your thoughts and feelings without fear of judgement.
-          </div>
+          Welcome to EmpathyBot! Share anything on your mind, I'm here to listen.
         </div>
-        
       </div>
-    </main>
+    </div>
     <form class="msger-inputarea">
-      <input type="text" class="msger-input" id="textInput" placeholder="Enter your message...">
-      <button type="submit" class="msger-send-btn">Send</button>
-    </form>
-  <script src='https://use.fontawesome.com/releases/v5.0.13/js/all.js'></script>
-  <script src="{{ url_for('static', filename='js/bot.js') }}"></script>
+        <input type="text" class="msger-input" placeholder="Type your message..." id="textInput">
+        <button type="submit" class="msger-send-btn">Send</button>
+    </form>      
+  </div>
+
+  <script>
+    $(document).ready(function () {
+      $('#chatForm').on('submit', function (e) {
+        e.preventDefault();
+        var userText = $('#textInput').val();
+        if (!userText.trim()) return;
+
+        $('#chat').append('<div class="msg user"><div class="msg-bubble">' + userText + '</div></div>');
+        $('#textInput').val("");
+
+        $.get('/get', { msg: userText }, function (data) {
+          $('#chat').append('<div class="msg bot"><div class="msg-bubble">' + data + '</div></div>');
+          $('.chat-body').scrollTop($('.chat-body')[0].scrollHeight);
+        });
+      });
+    });
+  </script>
 </body>
 </html>
