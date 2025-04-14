@@ -18,8 +18,12 @@
       padding: 0;
     }
     .chat-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 90%;
       max-width: 600px;
-      margin: 5vh auto;
       background: #fff;
       color: #333;
       border-radius: 20px;
@@ -27,7 +31,8 @@
       overflow: hidden;
       display: flex;
       flex-direction: column;
-    }
+}
+
     .chat-header {
       background-color: #2575fc;
       color: white;
@@ -88,17 +93,40 @@
       padding: 10px;
       overflow-y: auto;
       flex-grow: 1;
-}
+    }
     body, .msger, .msg, .msger-input, .msger-inputarea, .msg-text, .msg-info-name, .msg-info-time {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       font-size: 16px;
     }
+
+    @media screen and (max-width: 480px) {
+    .chat-container {
+        width: 95%;
+        height: auto;
+        border-radius: 15px;
+    }
+    .chat-body {
+        height: 300px;
+    }
+    .msger-input {
+        font-size: 14px;
+    }
+    .msger-send-btn {
+        font-size: 14px;
+        padding: 8px 12px;
+    }
+}
+
+
   </style>
 </head>
 <body>
   <div class="chat-container">
     <div class="chat-header">
-      <i class="fas fa-user-md"></i> EmpathyBot
+      <svg viewBox="0 0 640 512" title="robot" width="24" height="24" style="vertical-align: middle; margin-right: 10px;">
+        <path fill="currentColor" d="M32,224H64V416H32A31.96166,31.96166,0,0,1,0,384V256A31.96166,31.96166,0,0,1,32,224Zm512-48V448a64.06328,64.06328,0,0,1-64,64H160a64.06328,64.06328,0,0,1-64-64V176a79.974,79.974,0,0,1,80-80H288V32a32,32,0,0,1,64,0V96H464A79.974,79.974,0,0,1,544,176ZM264,256a40,40,0,1,0-40,40A39.997,39.997,0,0,0,264,256Zm-8,128H192v32h64Zm96,0H288v32h64ZM456,256a40,40,0,1,0-40,40A39.997,39.997,0,0,0,456,256Zm-8,128H384v32h64ZM640,256V384a31.96166,31.96166,0,0,1-32,32H576V224h32A31.96166,31.96166,0,0,1,640,256Z"/>
+      </svg>
+      EmpathyBot
     </div>
     <div class="chat-body" id="chat">
       <div class="msg bot">
@@ -108,14 +136,14 @@
       </div>
     </div>
     <form class="msger-inputarea">
-        <input type="text" class="msger-input" placeholder="Type your message..." id="textInput">
-        <button type="submit" class="msger-send-btn">Send</button>
-    </form>      
+      <input type="text" class="msger-input" placeholder="Type your message..." id="textInput">
+      <button type="submit" class="msger-send-btn">Send</button>
+    </form>
   </div>
 
   <script>
     $(document).ready(function () {
-      $('#chatForm').on('submit', function (e) {
+      $('.msger-inputarea').on('submit', function (e) {
         e.preventDefault();
         var userText = $('#textInput').val();
         if (!userText.trim()) return;
