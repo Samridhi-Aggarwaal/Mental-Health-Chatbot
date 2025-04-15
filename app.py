@@ -1,20 +1,20 @@
+#Flask-based chatbot web app, pretrained neural network
+
 import os
 import json
-import nltk
-import pickle
+import nltk                                         #NLP
+import pickle                                       #Load preprocessed data
 import random
 import numpy as np
 from nltk.stem import WordNetLemmatizer
-from tensorflow.keras.models import load_model
+from tensorflow.keras.models import load_model      #Load the trained deep learning model
 from nltk.tokenize import TreebankWordTokenizer
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request   #Run a web server and serve chatbot responses
 
 # Setup custom nltk_data directory
 nltk_data_dir = os.path.join(os.getcwd(), 'nltk_data')
 os.makedirs(nltk_data_dir, exist_ok=True)
 nltk.data.path.append(nltk_data_dir)
-
-# Force download resources
 nltk.download('wordnet', download_dir=nltk_data_dir)
 nltk.download('omw-1.4', download_dir=nltk_data_dir)
 
@@ -31,6 +31,7 @@ intents = json.loads(open('intents.json').read())
 # Create Flask app
 app = Flask(__name__)
 
+#Helper Functions
 # Tokenize and lemmatize the sentence
 def clean_up_sentence(sentence):
     sentence_words = tokenizer.tokenize(sentence)
@@ -73,7 +74,8 @@ def get_response(ints, intents_json):
             break
     return result
 
-# Define route for chatbot UI
+#Flask web app
+# Define home route for chatbot UI
 @app.route("/")
 def index():
     return render_template("index.html")
@@ -98,10 +100,11 @@ def chatbot_response():
         traceback.print_exc()
         return f"Server error: {str(e)}"
 
-# Test route
+# Define test route
 @app.route("/test")
 def test():
     return "Server is up and running!"
 
+#Run app
 if __name__ == "__main__":
     app.run(debug=True)
