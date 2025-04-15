@@ -5,10 +5,10 @@
 <h2>🧐 Features</h2>
 
 Here're some of the project's best features:
-
 *   Conversational
-*   Multilingual
 *   Mental Health support
+
+![Main User Interface](https://github.com/Samridhi-Aggarwaal/Mental-Health-Chatbot/blob/main/static/img/Screenshot%202025-04-15%20131131.png)
 
 # How to Set Up it?
 
