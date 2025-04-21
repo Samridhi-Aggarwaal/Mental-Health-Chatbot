@@ -26,7 +26,8 @@ tokenizer = TreebankWordTokenizer()
 model = load_model('model.h5')
 words = pickle.load(open('texts.pkl', 'rb'))
 classes = pickle.load(open('labels.pkl', 'rb'))
-intents = json.loads(open('intents.json').read())
+with open('intents.json', encoding='utf-8') as f:
+    intents = json.load(f)
 
 # Create Flask app
 app = Flask(__name__)
