@@ -120,40 +120,6 @@
 
   </style>
 </head>
-
-<script>
-  function scrollToBottom() {
-    const chatBox = document.getElementById("chat-box");
-    chatBox.scrollTop = chatBox.scrollHeight;
-  }
-
-  // Example function to add messages dynamically
-  function addMessage(text, sender = 'bot') {
-    const chatBox = document.getElementById("chat-box");
-
-    const msgWrapper = document.createElement("div");
-    msgWrapper.classList.add("msg", sender === 'user' ? "right-msg" : "left-msg");
-
-    msgWrapper.innerHTML = `
-      <div class="msg-img" style="background-image: url('https://cdn-icons-png.flaticon.com/512/847/847969.png')"></div>
-      <div class="msg-bubble">
-        <div class="msg-info">
-          <div class="msg-info-name">${sender === 'user' ? 'You' : 'Bot'}</div>
-          <div class="msg-info-time">${new Date().toLocaleTimeString()}</div>
-        </div>
-        <div class="msg-text">${text}</div>
-      </div>
-    `;
-
-    chatBox.appendChild(msgWrapper);
-    scrollToBottom();
-  }
-
-  // EXAMPLE: simulate incoming messages
-  setTimeout(() => addMessage("Hey! Welcome to the chat."), 500);
-  setTimeout(() => addMessage("Hi, thanks!", "user"), 1000);
-</script>
-
 <body>
   <div class="chat-container">
     <div class="chat-header">
@@ -174,17 +140,6 @@
       <button type="submit" class="msger-send-btn">Send</button>
     </form>
   </div>
-
-  <select id="languageSelect" style="margin-bottom: 10px; padding: 5px;">
-    <option value="en">English</option>
-    <option value="hi">Hindi</option>
-    <option value="es">Spanish</option>
-    <option value="fr">French</option>
-    <option value="de">German</option>
-    <option value="tr">Turkish</option>
-    <option value="sw">Swahili</option>
-  </select>
-  
 
   <script>
     $(document).ready(function () {
