@@ -52,7 +52,6 @@
         "patterns": ["Who created you?", "How were you made?", "How were you created?"],
         "responses": ["I was created by your well wisher.", "I was trained on a text dataset using Deep Learning & Natural Language Processing techniques", "The real question is: Who created you?"]
     },
-
     {"tag": "help",
     "patterns": ["Could you help me?", "give me a hand please", "Can you help?", "What can you do for me?", "I need support", "I need help", "Support me please"],
     "responses": ["Sure. Tell me how can i assist you", "Tell me your problem so that i can assist you", "Yes, sure. How can I help you?"]
@@ -181,6 +180,38 @@
         "patterns": ["i did what you said and i feel alot better. thank you very much.", "I feel better now"],
         "responses": ["Your welcome. Remember: Always focus on what's within your control. When you find yourself worrying, take a minute to examine the things you have control over. You can't prevent a storm from coming but you can prepare for it. You can't control how someone else behaves, but you can control how you react. Recognize that sometimes, all you can control is your effort and your attitude. When you put your energy into the things you can control, you'll be much more effective."]
     },
+    {"tag": "overwhelmed",
+        "patterns": ["I feel overwhelmed", "Everything is too much", "I can't handle all of this", "I'm drowning in responsibilities", "I'm mentally exhausted"],
+        "responses": ["It's okay to feel overwhelmed. You're human, and it's okay to pause. What's making you feel this way?", "You don’t have to go through it alone. Talk to me about what’s weighing you down.", "Let’s take it one step at a time. Tell me what's on your plate right now."]
+    },
+    {"tag": "panic-attack",
+        "patterns": ["I'm having a panic attack", "I can't breathe", "My chest feels tight", "I'm panicking", "Help me calm down"],
+        "responses": ["Take a deep breath with me. Inhale slowly for 4 seconds… hold for 4… and exhale for 4. You're going to be okay.", "You're not alone. You're safe right now. Focus on your breathing. I'm here with you.", "Try to ground yourself—can you name 5 things you can see around you?"]
+    },
+    {"tag": "self-care",
+        "patterns": ["How do I take care of myself?", "I need self-care tips", "Help me relax", "How can I feel better?", "What can I do to feel okay?"],
+        "responses": ["Sometimes small steps help—take a walk, journal for 5 minutes, or make a cup of tea. What would feel good right now?", "Self-care can be physical, emotional, or mental. Would you like ideas based on how you're feeling today?", "Let’s start simple: have you eaten, slept well, or hydrated today?"]
+    },
+    {"tag": "trauma",
+        "patterns": ["I went through something traumatic", "I have trauma", "It was really painful", "I still can't forget what happened", "Something bad happened to me"],
+        "responses": ["That sounds very difficult, and I'm sorry you went through that. You’re not alone. I'm here if you’d like to talk about it.", "Trauma can leave deep scars. Take your time. I'm listening if you want to share.", "You are strong for carrying this. Healing takes time and support."]
+    },
+    {"tag": "motivation",
+        "patterns": ["I need motivation", "I don't feel like doing anything", "How do I get motivated?", "I'm unmotivated", "Help me start my day"],
+        "responses": ["Motivation can come after action, not before. Try doing one small thing—just one. You might feel momentum build.", "It’s okay to start small. Even getting out of bed or brushing your teeth is progress.", "You’ve already taken a step by asking for help. That’s something to be proud of."]
+    },
+    {"tag": "hopeless",
+        "patterns": ["I feel hopeless", "What's the point?", "Nothing matters anymore", "I give up", "There's no way out"],
+        "responses": ["I’m really sorry you're feeling this way. Let’s talk through it together. You're not alone.", "It might not feel like it now, but things can and do change. Let’s figure it out, one moment at a time.", "Please don’t give up. Even the darkest nights end with sunrise. I’m here with you."]
+    },      
+    {"tag": "breathing",
+        "patterns": ["Help me breathe", "Breathing exercise", "I'm anxious, help me breathe", "Calm breathing"],
+        "responses": ["Let's do a quick breathing exercise together: Inhale for 4… Hold for 4… Exhale for 4… Hold for 4. Repeat this a few times.", "Focus on your breath: in through your nose… out through your mouth. Slowly and steadily.", "Try this: Put one hand on your belly and the other on your chest. Breathe in deeply. Which hand moves more? Focus on breathing into your belly."]
+    },
+    {"tag": "encouragement",
+        "patterns": ["I need encouragement", "Say something uplifting", "Motivate me", "Inspire me", "Tell me something good"],
+        "responses": ["You're doing better than you think. Keep going.", "Every day you show up is a victory. Keep moving forward.", "You are capable of handling more than you know. One step at a time."]
+    },      
     {"tag": "jamila-useful",
         "patterns": ["thank you very much again. i'll continue practicing meditation and focus on what i can control."],
         "responses": ["I'm glad you found this useful. Is there something else I can help you with?"]
