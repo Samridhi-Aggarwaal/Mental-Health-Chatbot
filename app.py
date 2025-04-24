@@ -81,21 +81,53 @@ def get_response(ints, intents_json):
 def index():
     return render_template("index.html")
 
+
+
 # Define route for chatbot API
+from google.cloud import translate_v2 as translate
+import os
+
+# Make sure this environment variable points to your service account key file
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "E:/STUDY/EmpathyBot/Mental-Health-Chatbot/keys/plucky-rarity-457710-f8-60878cfa5552.json"
+
+translate_client = translate.Client()
+
+def detect_language(text):
+    result = translate_client.detect_language(text)
+    return result['language']
+
+def translate_text(text, target_language='en'):
+    result = translate_client.translate(text, target_language=target_language)
+    return result['translatedText']
+
+
+from flask import request
+from langdetect import detect
+from google.cloud import translate_v2 as translate
+
+translate_client = translate.Client()
+
 @app.route("/get", methods=["GET", "POST"])
 def chatbot_response():
     try:
-        msg = request.values.get("msg")  # works for both GET and POST
+        msg = request.values.get("msg")
+        lang = request.values.get("lang", "en")  # default to English
         if not msg:
             return "No message received."
-        print(f"User message: {msg}")
-        ints = predict_class(msg)
-        print(f"Predicted intents: {ints}")
+
+        print(f"User message ({lang}): {msg}")
+        # Translate input to English
+        translated_input = translate_client.translate(msg, target_language='en', source_language=lang)['translatedText']
+        ints = predict_class(translated_input)
         if not ints:
             return "I'm not sure how to respond to that."
+
         res = get_response(ints, intents)
-        print(f"Bot response: {res}")
-        return res
+
+        # Translate bot response to user’s selected language
+        translated_output = translate_client.translate(res, target_language=lang)['translatedText']
+        return translated_output
+
     except Exception as e:
         import traceback
         traceback.print_exc()

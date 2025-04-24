@@ -271,9 +271,12 @@
   
   .msger-chat {
     flex: 1;
-    overflow-y: auto;
+    overflow-y: auto;       /* enables vertical scrolling */
     padding: 10px;
+    display: flex;
+    flex-direction: column;
   }
+  
   .msger-chat::-webkit-scrollbar {
     width: 6px;
   }
