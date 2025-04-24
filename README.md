@@ -46,3 +46,7 @@ pip install  -r requirements.txt
 ```
 flask --app app --debug run
 ```
+Or
+```
+python -m flask --app app --debug run
+```
