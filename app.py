@@ -111,27 +111,40 @@ translate_client = translate.Client()
 def chatbot_response():
     try:
         msg = request.values.get("msg")
-        lang = request.values.get("lang", "en")  # default to English
         if not msg:
             return "No message received."
 
-        print(f"User message ({lang}): {msg}")
-        # Translate input to English
-        translated_input = translate_client.translate(msg, target_language='en', source_language=lang)['translatedText']
+        # Auto-detect language
+        detected = translate_client.detect_language(msg)
+        lang = detected['language']
+
+        print(f"User message detected as ({lang}): {msg}")
+
+        # Translate to English if needed
+        if lang != 'en':
+            translated_input = translate_client.translate(msg, target_language='en', source_language=lang)['translatedText']
+        else:
+            translated_input = msg
+
         ints = predict_class(translated_input)
         if not ints:
             return "I'm not sure how to respond to that."
 
         res = get_response(ints, intents)
 
-        # Translate bot response to user’s selected language
-        translated_output = translate_client.translate(res, target_language=lang)['translatedText']
+        # Translate back to user's original language if needed
+        if lang != 'en':
+            translated_output = translate_client.translate(res, target_language=lang)['translatedText']
+        else:
+            translated_output = res
+
         return translated_output
 
     except Exception as e:
         import traceback
         traceback.print_exc()
         return f"Server error: {str(e)}"
+
 
 # Define test route
 @app.route("/test")

@@ -37,7 +37,7 @@
         },
         {"tag": "about",
         "patterns": ["Who are you?", "What are you?", "Who you are?", "Tell me more about yourself.", "What is your name?", "What should I call you?", "What's your name?", "Tell me about yourself" ],
-        "responses": ["I'm Jessica, your Personal Therapeutic AI Assistant. How are you feeling today", "I'm Jessica, a Therapeutic AI Assitant designed to assist you. Tell me about yourself.", "I'm Jessica. I am a conversational agent designed to mimic a therapist. So how are you feeling today?", "You can call me Jessica.", "I'm Jessica!", "Call me Jessica"]
+        "responses": ["I'm EmpathyBot, your Personal Therapeutic AI Assistant. How are you feeling today", "I'm EmpathyBot, a Therapeutic AI Assitant designed to assist you. Tell me about yourself.", "I'm EmpathyBot. I am a conversational agent designed to mimic a therapist. So how are you feeling today?", "You can call me EmpathyBot.", "I'm EmpathyBot!", "Call me EmpathyBot"]
         },
 
     {"tag": "what is depression?",
@@ -74,7 +74,7 @@
             "responses": ["It helps to talk about what's happening. You're going to be okay", "Talk to me. Tell me more. It helps if you open up yourself to someone else.", "Sometimes when we are depressed, it is hard to care about anything. It can be hard to do the simplest of things. Give yourself time to heal."]
         },
         {"tag": "happy",
-            "patterns": ["I feel great today.", "I am happy.", "I feel happy.", "I'm good.", "cheerful", "I'm fine", "I feel ok"],
+            "patterns": ["I feel great today.", "I am happy.", "I feel happy.", "I'm good.", "cheerful", "I'm fine", "I feel ok", "I am feeling great"],
             "responses": ["That's geat to hear. I'm glad you're feeling this way.", "Oh i see. That's great.", "Did something happen which made you feel this way?"]
         },
         {"tag": "casual",
@@ -390,7 +390,7 @@
             "what are the causes of depression?"
         ],
         "responses": [
-            "it's complicated, and there are multiple\u00a0causes\u00a0of major\u00a0depression. factors such as genetic vulnerability, severe life stressors, substances you may take (some medications, drugs and alcohol) and medical conditions can affect the way your brain regulates your moods."
+            "It's complicated, and there are multiple\u00a0causes\u00a0of major\u00a0depression. factors such as genetic vulnerability, severe life stressors, substances you may take (some medications, drugs and alcohol) and medical conditions can affect the way your brain regulates your moods."
         ]
     },
     {
