@@ -75,7 +75,7 @@
     },
     {"tag": "happy",
         "patterns": ["I feel great today.", "I am happy.", "I feel happy.", "I'm good.", "cheerful", "I'm fine", "I feel ok", "I am feeling great"],
-        "responses": ["That's geat to hear. I'm glad you're feeling this way.", "Oh i see. That's great.", "Did something happen which made you feel this way?"]
+        "responses": ["That's geat to hear. I'm glad you're feeling this way.", "Oh i see. That's great.", "Great, did something happen which made you feel this way?"]
     },
     {"tag": "casual",
         "patterns": ["Oh I see.", "ok", "okay", "nice", "Whatever", "K", "Fine", "yeah", "yes", "no", "not really"],
