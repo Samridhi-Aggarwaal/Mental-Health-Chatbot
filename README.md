@@ -46,6 +46,3 @@ pip install  -r requirements.txt
 ```
 flask --app app --debug run
 ```
-
-
-[![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://buymeacoffee.com/ayushdevv)
